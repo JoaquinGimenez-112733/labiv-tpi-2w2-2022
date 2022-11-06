@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity(name = "ReciboNQ")
 @NamedNativeQuery(
         name  = "recibos_por_area",
-        query = "SELECT e.area, SUM((r.sueldo_bruto + r.monto_antiguedad) - r.monto_jubilacion - r.montoFAC - r.monto_obra_social) as sueldoNeto FROM recibo r INNER JOIN empleado e ON r.legajo_empleado = e.legajo WHERE año=:año AND mes=:mes GROUP BY e.area ORDER BY sueldoNeto DESC",
+        query = "SELECT e.area, SUM((r.sueldo_bruto + r.monto_antiguedad) - r.monto_jubilacion - r.montoFAC - r.monto_obra_social) as sueldoNeto FROM recibo r INNER JOIN empleado e ON r.legajo_empleado = e.legajo WHERE ano=:ano AND mes=:mes GROUP BY e.area ORDER BY sueldoNeto DESC",
         resultSetMapping = "recibos_dto"
 )
 @SqlResultSetMapping(

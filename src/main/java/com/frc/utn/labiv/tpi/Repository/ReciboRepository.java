@@ -17,7 +17,7 @@ public interface ReciboRepository extends JpaRepository<Recibo, Integer> {
 
 
     @Query(name = "recibos_por_area", nativeQuery = true)
-    List<ReciboNQ> findRecibs(@Param(value = "año") int año, @Param(value = "mes") int mes);
+    List<ReciboNQ> findRecibs(@Param(value = "ano") int año, @Param(value = "mes") int mes);
 
 
 }

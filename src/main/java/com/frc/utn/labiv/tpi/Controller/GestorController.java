@@ -133,9 +133,9 @@ public class GestorController {
     }
 
     @GetMapping(value = "/recib")
-    public ResponseEntity<List<ReciboNQ>> recibosPorArea(@RequestParam int año, @RequestParam int mes) {
+    public ResponseEntity<List<ReciboNQ>> recibosPorArea(@RequestParam int ano, @RequestParam int mes) {
         try {
-            List<ReciboNQ> recibos = recRep.findRecibs(año, mes);
+            List<ReciboNQ> recibos = recRep.findRecibs(ano, mes);
             System.out.println(recibos.toString());
             return ResponseEntity.status(200).body(recibos);
 
