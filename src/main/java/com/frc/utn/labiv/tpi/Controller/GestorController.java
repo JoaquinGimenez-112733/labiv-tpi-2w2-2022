@@ -62,6 +62,18 @@ public class GestorController {
         }
     }
 
+    @GetMapping(value = "/emp")
+    public ResponseEntity<List<EmpleadoDTOSimple>> getEmpleadosSimple() {
+        try {
+            List<EmpleadoDTOSimple> dto = empRep.findEmpleadoDTOSimple();
+            System.out.println(dto);
+            return ResponseEntity.status(200).body(dto);
+        } catch (Exception ex) {
+            System.out.println(ex);
+            return ResponseEntity.status(400).body(null);
+        }
+    }
+
     @PostMapping(value = "/empleados")
     public ResponseEntity postEmpleado(@RequestBody Empleado e) {
         if (validarEmpleado(e) == false) {
@@ -70,7 +82,7 @@ public class GestorController {
 
         try {
             empRep.save(e);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Emplado creado con exito!");
+            return ResponseEntity.status(200).body("Emplado creado con exito!");
         } catch (Exception ex) {
             System.out.println(ex);
             return ResponseEntity.status(400).body("No se pudo crear el empleado...");
@@ -100,7 +112,7 @@ public class GestorController {
 
             for (Recibo r : recibos) {
                 int id = r.getId();
-                int año = r.getAño();
+                int ano = r.getAno();
                 int mes = r.getMes();
                 float sueldoBruto = r.getSueldoBruto();
                 float montoAntiguedad = r.getMontoAntiguedad();
@@ -110,7 +122,7 @@ public class GestorController {
                 float sueldoNeto = (r.getSueldoBruto() + r.getMontoAntiguedad()) - r.getMontoJubilacion() - r.getMontoObraSocial() - r.getMontoFAC();
                 int legajoEmpleado = r.getEmpleado().getLegajo();
 
-                ReciboDTO rDTO = new ReciboDTO(id, año, mes, sueldoBruto, montoAntiguedad, montoJubilacion, montoObraSocial, montoFAC, sueldoNeto, legajoEmpleado);
+                ReciboDTO rDTO = new ReciboDTO(id, ano, mes, sueldoBruto, montoAntiguedad, montoJubilacion, montoObraSocial, montoFAC, sueldoNeto, legajoEmpleado);
                 recibosDTO.add(rDTO);
             }
             return ResponseEntity.status(200).body(recibosDTO);
@@ -135,6 +147,9 @@ public class GestorController {
 
     public boolean validarEmpleado(Empleado e) {
         if (e.getLegajo() == 0) {
+            return false;
+        }
+        if(empRep.existsById(e.getLegajo())){
             return false;
         }
         if (e.getNombre().isEmpty()) {

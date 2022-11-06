@@ -9,7 +9,7 @@ public class Recibo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
-    private int año;
+    private int ano;
     @Column
     private int mes;
     @Column
@@ -44,12 +44,12 @@ public class Recibo {
         this.id = id;
     }
 
-    public int getAño() {
-        return año;
+    public int getAno() {
+        return ano;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAño(int ano) {
+        this.ano = ano;
     }
 
     public int getMes() {

@@ -6,7 +6,7 @@ public class ReciboDTO {
 
     private int id;
 
-    private int año;
+    private int ano;
 
     private int mes;
 
@@ -24,9 +24,9 @@ public class ReciboDTO {
 
     private int legajoEmpleado;
 
-    public ReciboDTO(int id, int año, int mes, float sueldoBruto, float montoAntiguedad, float montoJubilacion, float montoObraSocial, float montoFAC, float sueldoNeto, int legajoEmpleado) {
+    public ReciboDTO(int id, int ano, int mes, float sueldoBruto, float montoAntiguedad, float montoJubilacion, float montoObraSocial, float montoFAC, float sueldoNeto, int legajoEmpleado) {
         this.id = id;
-        this.año = año;
+        this.ano = ano;
         this.mes = mes;
         this.sueldoBruto = sueldoBruto;
         this.montoAntiguedad = montoAntiguedad;
@@ -45,12 +45,12 @@ public class ReciboDTO {
         this.id = id;
     }
 
-    public int getAño() {
-        return año;
+    public int getAno() {
+        return ano;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAno(int año) {
+        this.ano = año;
     }
 
     public int getMes() {
