@@ -74,6 +74,19 @@ public class GestorController {
         }
     }
 
+    @GetMapping(value = "/empexist")
+    public ResponseEntity<Boolean> getEmpExist(@RequestParam int legajo){
+        try{
+            Boolean result = empRep.existsById(legajo);
+
+                return ResponseEntity.status(200).body(result);
+
+
+        }catch (Exception ex){
+            return ResponseEntity.status(400).body(null);
+        }
+    }
+
     @PostMapping(value = "/empleados")
     public ResponseEntity postEmpleado(@RequestBody Empleado e) {
         if (validarEmpleado(e) == false) {
@@ -88,6 +101,8 @@ public class GestorController {
             return ResponseEntity.status(400).body("No se pudo crear el empleado...");
         }
     }
+
+
 
     @PostMapping(value = "/recibos")
     public ResponseEntity postRecibo(@RequestBody Recibo r) {
