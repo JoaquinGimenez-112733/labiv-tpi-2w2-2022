@@ -1,8 +1,6 @@
 package com.frc.utn.labiv.tpi.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.util.Date;
+
 
 public class EmpleadoDTO {
 

@@ -1,6 +1,6 @@
 package com.frc.utn.labiv.tpi.Model;
 
-import javax.persistence.*;
+
 
 public class ReciboDTO {
 
