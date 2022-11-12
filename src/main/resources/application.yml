@@ -1,6 +1,6 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mariadb://localhost/gestorRecibos
+    url: jdbc:mariadb://localhost/gestorRecibos?createDatabaseIfNotExist=true
     username: root
     password: 123456
