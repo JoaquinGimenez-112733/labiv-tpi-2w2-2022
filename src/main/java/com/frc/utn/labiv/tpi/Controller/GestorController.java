@@ -26,7 +26,7 @@ public class GestorController {
     @Autowired
     private ReciboRepository recRep;
 
-    private static final DecimalFormat df = new DecimalFormat("#,###");
+    private static final DecimalFormat df = new DecimalFormat("#,#");
 
     @GetMapping(value = "/")
     public String holaMundo() {
@@ -50,6 +50,7 @@ public class GestorController {
 
 
                 float antiguedad = e.getAntiguedad();
+
                 EmpleadoDTO eDTO = new EmpleadoDTO(legajo, nombre, apellido, fecNac, antiguedad, area, sueldoBruto);
 
                 empleadosDTO.add(eDTO);

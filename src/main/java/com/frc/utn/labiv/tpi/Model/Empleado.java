@@ -88,14 +88,14 @@ public class Empleado {
         Date ahora = new Date();
         long diffInMillies = Math.abs(ahora.getTime() - this.getFechaIngreso().getTime());
         float antiguedad = (TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)) / (float) 365;
-        float f = roundFloat(antiguedad, 2);
+        float f = roundFloat(antiguedad, 0);
         return f;
     }
 
     private static float roundFloat(float f, int places) {
 
         BigDecimal bigDecimal = new BigDecimal(Float.toString(f));
-        bigDecimal = bigDecimal.setScale(places, RoundingMode.HALF_UP);
+        bigDecimal = bigDecimal.setScale(places, RoundingMode.DOWN);
         return bigDecimal.floatValue();
     }
 
