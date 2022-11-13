@@ -1,5 +1,7 @@
 package com.frc.utn.labiv.tpi.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,7 @@ public class Recibo {
     private float montoFAC;
     @ManyToOne
     @JoinColumn(name = "legajoEmpleado")
+    @JsonBackReference
     private Empleado legajoEmpleado;
 
     public Empleado getEmpleado() {

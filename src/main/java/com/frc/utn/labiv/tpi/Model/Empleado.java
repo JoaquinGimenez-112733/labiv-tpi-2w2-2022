@@ -1,13 +1,13 @@
 package com.frc.utn.labiv.tpi.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Entity
@@ -28,21 +28,11 @@ public class Empleado {
     @Column
     private float sueldoBruto;
 
-    public String getArea() {
-        return area;
-    }
+    @OneToMany(targetEntity = Recibo.class, mappedBy = "legajoEmpleado")
+    @JsonManagedReference
+    private List<Recibo> recibos;
 
-    public void setArea(String area) {
-        this.area = area;
-    }
 
-    public float getSueldoBruto() {
-        return sueldoBruto;
-    }
-
-    public void setSueldoBruto(float sueldoBruto) {
-        this.sueldoBruto = sueldoBruto;
-    }
 
     public int getLegajo() {
         return legajo;
@@ -84,7 +74,31 @@ public class Empleado {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public float getAntiguedad(){
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public float getSueldoBruto() {
+        return sueldoBruto;
+    }
+
+    public void setSueldoBruto(float sueldoBruto) {
+        this.sueldoBruto = sueldoBruto;
+    }
+
+    public List<Recibo> getRecibos() {
+        return recibos;
+    }
+
+    public void setRecibos(List<Recibo> recibos) {
+        this.recibos = recibos;
+    }
+
+    public float getAntiguedad() {
         Date ahora = new Date();
         long diffInMillies = Math.abs(ahora.getTime() - this.getFechaIngreso().getTime());
         float antiguedad = (TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)) / (float) 365;
@@ -99,7 +113,7 @@ public class Empleado {
         return bigDecimal.floatValue();
     }
 
-    public String fecNacFormat(){
+    public String fecNacFormat() {
         String pattern = "dd-MM-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 

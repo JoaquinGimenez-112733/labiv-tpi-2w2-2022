@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 
@@ -58,7 +58,7 @@ public class GestorController {
 
             return ResponseEntity.status(200).body(empleadosDTO);
         } catch (Exception ex) {
-            System.out.println(ex);
+
             return ResponseEntity.internalServerError().body(null);
         }
     }
@@ -67,10 +67,10 @@ public class GestorController {
     public ResponseEntity<List<EmpleadoDTOSimple>> getEmpleadosSimple() {
         try {
             List<EmpleadoDTOSimple> dto = empRep.findEmpleadoDTOSimple();
-            System.out.println(dto);
+
             return ResponseEntity.status(200).body(dto);
         } catch (Exception ex) {
-            System.out.println(ex);
+
             return ResponseEntity.status(400).body(null);
         }
     }
@@ -98,7 +98,7 @@ public class GestorController {
             empRep.save(e);
             return ResponseEntity.status(200).body("Emplado creado con exito!");
         } catch (Exception ex) {
-            System.out.println(ex);
+
             return ResponseEntity.status(400).body("No se pudo crear el empleado...");
         }
     }
@@ -107,15 +107,12 @@ public class GestorController {
 
     @PostMapping(value = "/recibos")
     public ResponseEntity postRecibo(@RequestBody Recibo r) {
-//        if(validarEmpleado(r) == false){
-//            return ResponseEntity.status(400).body("No se pudo crear el empleado, todos los datos son requeridos!");
-//        }
 
         try {
             recRep.save(r);
             return ResponseEntity.status(HttpStatus.CREATED).body("Recibo creado con exito!");
         } catch (Exception ex) {
-            System.out.println(ex);
+
             return ResponseEntity.status(400).body("No se pudo crear el recibo...");
         }
     }
@@ -143,7 +140,7 @@ public class GestorController {
             }
             return ResponseEntity.status(200).body(recibosDTO);
         } catch (Exception ex) {
-            System.out.println(ex);
+
             return ResponseEntity.internalServerError().body(null);
         }
     }
@@ -152,11 +149,11 @@ public class GestorController {
     public ResponseEntity<List<ReciboNQ>> recibosPorArea(@RequestParam int ano, @RequestParam int mes) {
         try {
             List<ReciboNQ> recibos = recRep.findRecibs(ano, mes);
-            System.out.println(recibos.toString());
+
             return ResponseEntity.status(200).body(recibos);
 
         } catch (Exception ex) {
-            System.out.println(ex);
+
             return ResponseEntity.internalServerError().body(null);
         }
     }
@@ -181,7 +178,7 @@ public class GestorController {
         if (e.getFechaIngreso() == null) {
             return false;
         }
-        if (e.getArea().isEmpty()) {
+        if (e.getArea().isEmpty() ) {
             return false;
         }
         if (e.getSueldoBruto() == 0) {
@@ -189,4 +186,6 @@ public class GestorController {
         }
         return true;
     }
+
+
 }
